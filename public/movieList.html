@@ -1,0 +1,27 @@
+<html>
+	<body>
+		<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<script>
+	  		$().ready(function() {
+	  			$.get( "retrieve_movies", function( data ) {
+				  	var list = document.getElementById("movieList");
+				  	data.forEach(movie => {
+				  		var node = document.createElement("LI");
+				  		var link = document.createElement('a');
+						link.textContent = movie;
+						link.href="/picker/watch/"+movie;
+						link.id='movie_choice';
+						node.appendChild(link);
+						list.appendChild(node);
+				  	});
+				});
+			});
+
+	  	</script>  
+      	<h3>Movie list</h3>
+      	<ul id="movieList">
+		</ul>
+
+	  	
+	</body>
+</html>

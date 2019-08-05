@@ -1,2 +1,2 @@
 # StreamingApp
-Simple movie streaming app
+Simple streaming app
