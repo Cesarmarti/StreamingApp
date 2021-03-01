@@ -52,10 +52,13 @@ router.post('/movie_upload',function (req, res){
 
 router.get('/retrieve_movies',function (req, res){
     console.log("GET request for movie list");
+    const validImageTypes = ['jpeg', 'png','jpg'];
     var movies = [];
     fs.readdir(movieFolder, (err, files) => {
         files.forEach(file => {
-            movies.push(file);
+            var fileExt = file.split('.').pop();
+            if(!validImageTypes.includes(fileExt))
+                movies.push(file);
         });
         res.send(movies);
     });
@@ -102,6 +105,22 @@ router.get("/picker/:movie",function(req,res){
         res.writeHead(200, head)
         fs.createReadStream(path).pipe(res)
     }
+})
+
+router.get("/images/:movie",function(req,res){
+    //strip movie of ext
+
+    const path = parent_directory+'\\movies\\'+req.params.movie;
+    var jpg_img = path+".jpg";
+    var png_img = path+".png";
+    if(fs.existsSync(jpg_img)){
+        res.sendFile(jpg_img);
+    }else if(fs.existsSync(png_img)){
+        res.sendFile(png_img);
+    }else{
+        res.sendFile(parent_directory+'\\movies\\'+"default_image.png");
+    }
+    
 })
 
 

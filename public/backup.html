@@ -20,7 +20,7 @@
 						link.id='movie_choice';
 						node.appendChild(link);
 						list.appendChild(node);*/
-						var movieWOext = movie.split('.').slice(0, -1).join('.')
+
 						var mainDiv = document.createElement("div");
 						if(counter==0)
 							mainDiv.className ="carousel-item active";
@@ -32,7 +32,7 @@
 						divCaption.className = "carousel-caption";
 
 						var img = document.createElement("img");
-						img.src = "/images/"+movieWOext;
+						img.src = "/images/"+movie;
 						img.className = "d-block w-100";
 						var light = document.createElement("div");
 						light.className = "mask rgba-black-light";
@@ -41,14 +41,14 @@
 
 						var title = document.createElement("h3");
 						title.className ="h3-responsive";
-						var t = document.createTextNode(movieWOext);
+						var t = document.createTextNode(movie);
 						title.appendChild(t);
 						divCaption.appendChild(title);
 						var par = document.createElement("p");
 						var link = document.createElement("a");
 						link.className = "btn btn-lg btn-primary";
 						link.href = "/picker/watch/"+movie;
-						link.setAttribute("role", "button");
+						link.dataset.role = "button";
 						var text = document.createTextNode("Watch");
 						link.appendChild(text);
 						par.appendChild(link);
@@ -77,8 +77,7 @@
 					counter++;
 					ol.appendChild(li);
 				})
-				var car = document.getElementById("carousel-inner-main");
-				mainDiv.insertBefore(ol,car);
+				mainDiv.appendChild(ol);
 	  		}
 	  	</script>  
       	<h3>Movie list</h3>
@@ -88,10 +87,49 @@
 	  	<!--Carousel Wrapper-->
 		<div id="carousel-main" class="carousel slide carousel-fade" data-ride="carousel">
 		  <!--Indicators-->
+		  <ol class="carousel-indicators">
+		    <li data-target="#carousel-main" data-slide-to="0" class="active"></li>
+		    <li data-target="#carousel-main" data-slide-to="1"></li>
+		    <li data-target="#carousel-main" data-slide-to="2"></li>
+		  </ol>
 		  <!--/.Indicators-->
 		  <!--Slides-->
 		  <div id="carousel-inner-main" class="carousel-inner" role="listbox">
-		    
+		    <div class="carousel-item active">
+		      <div class="view">
+		        <img class="d-block w-100" src="/images/rando">
+		        <div class="mask rgba-black-light"></div>
+		      </div>
+		      <div class="carousel-caption">
+		        <h3 class="h3-responsive">Spiderman</h3>
+		        <p>First text</p>
+		        <p><a class="btn btn-lg btn-primary" href="#" role="button">Watch</a></p>
+		      </div>
+		    </div>
+		    <div class="carousel-item">
+		      <!--Mask color-->
+		      <div class="view">
+		        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg"
+		          alt="Second slide">
+		        <div class="mask rgba-black-strong"></div>
+		      </div>
+		      <div class="carousel-caption">
+		        <h3 class="h3-responsive">Strong mask</h3>
+		        <p>Secondary text</p>
+		      </div>
+		    </div>
+		    <div class="carousel-item">
+		      <!--Mask color-->
+		      <div class="view">
+		        <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg"
+		          alt="Third slide">
+		        <div class="mask rgba-black-slight"></div>
+		      </div>
+		      <div class="carousel-caption">
+		        <h3 class="h3-responsive">Slight mask</h3>
+		        <p>Third text</p>
+		      </div>
+		    </div>
 		  </div>
 		  <!--/.Slides-->
 		  <!--Controls-->
